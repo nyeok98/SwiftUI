@@ -85,6 +85,9 @@ fastlane/test_output
 
 iOSInjectionProject/
 
+*.json
+*.DS_Store
+
 #Media
 *.png
 *.mp4

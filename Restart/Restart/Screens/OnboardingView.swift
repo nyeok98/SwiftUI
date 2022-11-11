@@ -44,14 +44,7 @@ struct OnboardingView: View {
                 // MARK: - CENTER
                 
                 ZStack {
-                    ZStack{
-                        Circle()
-                            .stroke(.white.opacity(0.2), lineWidth: 40)
-                            .frame(width: 260, height: 260, alignment: .center)
-                        Circle()
-                            .stroke(.white.opacity(0.2), lineWidth: 80)
-                            .frame(width: 260, height: 260, alignment: .center)
-                    } //: ZSTACK
+                    CircleGroupView(ShapeColor: .white, ShapeOpacity: 0.2)
                     
                     Image("character-1")
                         .resizable()
@@ -69,9 +62,6 @@ struct OnboardingView: View {
                     
                     Capsule()
                         .fill(Color.white.opacity(0.2))
-                    Capsule()
-                        .fill(Color.white.opacity(0.2))
-                        .padding(8)
                     
                     // 2. CALL-TO-ACTION (STATIC)
                     
@@ -85,8 +75,8 @@ struct OnboardingView: View {
                     
                     HStack {
                         Capsule()
-                            .fill(Color("ColorRed"))
-                            .frame(width: 80)
+                            .fill(Color(.white))
+                            .frame(width:95)
                         
                         Spacer()
                     }
@@ -96,12 +86,10 @@ struct OnboardingView: View {
                     HStack {
                         ZStack {
                             Circle()
-                                .fill(Color("ColorRed"))
-                            Circle()
-                                .fill(.black.opacity(0.15))
-                                .padding(8)
+                                .fill(Color(.white))
                             Image(systemName: "chevron.right.2")
                                 .font(.system(size:24, weight: .bold))
+                                .foregroundColor(.black.opacity(0.3))
                         }
                         .foregroundColor(.white)
                         .frame(width: 80, height: 80, alignment: .center)
@@ -111,6 +99,7 @@ struct OnboardingView: View {
                         
                         Spacer()
                     } //: HSTACK
+                    .padding(8)
                 }//: FOOTER
                 .frame(height: 80, alignment: .center)
                 .padding()

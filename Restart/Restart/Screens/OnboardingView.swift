@@ -11,6 +11,8 @@ struct OnboardingView: View {
     //MARK: - PROPERTY
     
     @AppStorage("onboarding") var isOnboardingViewActive: Bool = true
+    @State private var buttonWidth: Double = UIScreen.main.bounds.width - 95
+    @State private var buttonOffset: CGFloat = 0
     
     //MARK: - BODY
     
@@ -62,6 +64,7 @@ struct OnboardingView: View {
                     
                     Capsule()
                         .fill(Color.white.opacity(0.2))
+                        .frame(width: buttonWidth)
                     
                     // 2. CALL-TO-ACTION (STATIC)
                     
@@ -76,7 +79,7 @@ struct OnboardingView: View {
                     HStack {
                         Capsule()
                             .fill(Color(.white))
-                            .frame(width:95)
+                            .frame(width: buttonOffset + 95)
                         
                         Spacer()
                     }
@@ -92,16 +95,28 @@ struct OnboardingView: View {
                                 .foregroundColor(.black.opacity(0.3))
                         }
                         .foregroundColor(.white)
-                        .frame(width: 80, height: 80, alignment: .center)
-                        .onTapGesture {
-                            isOnboardingViewActive = false
-                        }
-                        
+                        .frame(width: 95, height: 95, alignment: .center)
+                        .offset(x: buttonOffset)
+                        .gesture(
+                            DragGesture()
+                                .onChanged { gesture in
+                                    if gesture.translation.width > 0 && buttonOffset <= buttonWidth - 95 {
+                                        buttonOffset = gesture.translation.width
+                                    }
+                                }
+                                .onEnded{ _ in
+                                    if buttonOffset > buttonWidth / 2 {
+                                        buttonOffset = buttonWidth - 95
+                                        isOnboardingViewActive = false
+                                    } else {
+                                        buttonOffset = 0
+                                    }
+                                }
+                        ) //: GESTURE
                         Spacer()
                     } //: HSTACK
-                    .padding(8)
                 }//: FOOTER
-                .frame(height: 80, alignment: .center)
+                .frame(width: buttonWidth, height: 95, alignment: .center)
                 .padding()
             } //: VSTACK
         } //: ZSTACK

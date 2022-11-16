@@ -12,6 +12,7 @@ struct HomeView: View {
 
     @AppStorage("onboarding") var isOnboardingViewActive: Bool = false
     @State private var isAnimating: Bool = false
+    @State private var imageOffset: CGSize = .zero
     
     // MARK: - BODY
     

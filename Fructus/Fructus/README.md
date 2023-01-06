@@ -2,7 +2,8 @@
 SwiftUI의 Tabview를 통해 Card Section을 구현하는 Demo
 
 ##### To-Do
-- [ ] Make table views for each card section
+- [x] Make table views for each card section
+- [x] Scatter each row by Foreach
 - [x] Make cells in SwiftUI
 - [x] Branch by Appstorage
 - [x] Make Card View by using TabView 
